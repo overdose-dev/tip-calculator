@@ -1,0 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.span-style {
+  @apply bg-[#00494d] px-4 py-2 rounded-md text-white text-center font-semibold cursor-pointer active:bg-[#c5e4e7] active:text-[#00494d] active:font-bold;
+}

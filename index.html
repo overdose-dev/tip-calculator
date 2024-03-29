@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./images/favicon-32x32.png"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="./src/output.css" />
+
+    <title>Frontend Mentor | Tip calculator app</title>
+
+    <style>
+      .attribution {
+        font-size: 11px;
+        text-align: center;
+      }
+      .attribution a {
+        color: hsl(228, 45%, 44%);
+      }
+
+      #section-wrapper > div {
+        flex: 1;
+      }
+
+      #span-grid {
+        display: grid;
+        grid-gap: 10px;
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      #pageContent {
+        height: 80vh;
+      }
+
+      .active-state {
+        background-color: #c5e4e7;
+        color: #00494d;
+        font-weight: bold;
+      }
+
+      input::-webkit-outer-spin-button,
+      input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+      }
+
+      @media (min-width: 1439px) {
+        #splitter {
+          margin-top: 650px;
+          margin-bottom: -600px;
+          font-size: 28px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        #span-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (min-width: 768px) {
+        #section-wrapper {
+          width: 85%;
+        }
+      }
+
+      @media (max-width: 426px) {
+        #pageContent {
+          height: 100vh;
+        }
+
+        #span-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        #section-wrapper {
+          flex-direction: column;
+        }
+
+        #section2 {
+          margin-left: 0;
+        }
+
+        .attribution {
+          margin-top: 70px;
+          margin-bottom: 25px;
+        }
+
+        #splitter {
+          margin: 30px 0 70px 0;
+          letter-spacing: 8px;
+        }
+      }
+    </style>
+  </head>
+  <body class="bg-[#c5e4e7] font-spacemono">
+    <span
+      id="splitter"
+      class="flex justify-center text-center font-bold tracking-[8px] mt-10"
+    >
+      SPLI <br />
+      TTER
+    </span>
+    <div id="pageContent" class="flex justify-center items-center">
+      <div
+        id="section-wrapper"
+        class="bg-white rounded-xl flex justify-between p-5 w-screen lg:md:w-4/5"
+      >
+        <div class="flex flex-col w-full">
+          <div>
+            <div class="pt-6 pb-2 flex justify-between font-semibold">
+              <p class="pb-1 font-semibold">Bill</p>
+              <span id="billError" class="text-red-500 hidden"
+                >Can't be zero</span
+              >
+            </div>
+            <div class="relative">
+              <input
+                type="number"
+                id="bill"
+                class="bg-[#f4fafa] w-full mb-5 p-2 focus:text-right focus:outline-[#26c0ab] focus:text-[#00494d] focus:font-bold text-right font-bold rounded-md"
+                placeholder="0"
+                width="100%"
+              />
+              <img
+                src="images/icon-dollar.svg"
+                alt="dollar"
+                class="absolute top-[20%] left-2"
+              />
+            </div>
+          </div>
+          <p class="pb-2 font-semibold">Select Tip %</p>
+          <div id="span-grid">
+            <button id="button" class="span-style">5%</button>
+            <button id="button" class="span-style">10%</button>
+            <button id="button" class="span-style">15%</button>
+            <button id="button" class="span-style">25%</button>
+            <button id="button" class="span-style">50%</button>
+            <input
+              type="number"
+              id="customTipInput"
+              placeholder="Custom"
+              class="bg-[#f4fafa] p-2 rounded-md text-[#00494d] placeholder:text-center placeholder:text-[00494d] placeholder:font-semibold active:bg-[#c5e4e7] focus:text-[#00494d] focus:font-bold w-full focus:text-right focus:outline-[#26c0ab] text-center font-bold"
+            />
+          </div>
+          <div class="pt-6 pb-2 flex justify-between font-semibold">
+            <span>Number of People</span>
+            <span id="noOfPeopleError" class="text-red-500 hidden"
+              >Can't be zero</span
+            >
+          </div>
+          <div class="mb-2 w-full relative">
+            <input
+              type="number"
+              id="numberOfPeople"
+              class="bg-[#f4fafa] w-full mb-5 p-2 focus:text-right focus:outline-[#26c0ab] focus:text-[#00494d] focus:font-bold text-right font-bold rounded-md"
+              placeholder="0"
+              width="100%"
+            />
+            <img
+              src="images/icon-person.svg"
+              alt=""
+              class="absolute top-[20%] left-2"
+            />
+          </div>
+        </div>
+
+        <div
+          id="section2"
+          class="bg-[#00494d] p-8 xl:lg:md:p-6 rounded-xl text-white w-full lg:ml-10 sm:ml-5"
+        >
+          <div>
+            <div class="flex flex-row justify-between">
+              <div class="flex flex-col mb-10">
+                <span> Tip Amount </span>
+                <span
+                  class="text-[12px] text-[#7f9c9f] font-semibold tracking-wider italic"
+                >
+                  / person
+                </span>
+              </div>
+              <span class="text-3xl text-[#26c0ab] font-bold" id="tipAmount"
+                >$0.00</span
+              >
+            </div>
+            <div class="flex flex-row justify-between">
+              <div class="flex flex-col mb-11 sm:mb-48 lg:mb-32">
+                <span> Total </span>
+                <span
+                  class="text-[12px] text-[#7f9c9f] font-semibold tracking-wider italic"
+                >
+                  / person
+                </span>
+              </div>
+              <span class="text-3xl text-[#26c0ab] font-bold" id="totalAmount"
+                >$0.00</span
+              >
+            </div>
+          </div>
+
+          <p class="w-full bottom-0">
+            <button
+              id="reset-btn"
+              class="text-[#035b5f] rounded-md py-2 px-10 uppercase bg-[#0d686d] w-full active:bg-[#c5e4e7] hover:bg-[#c5e4e7] font-bold tracking-wide"
+            >
+              Reset
+            </button>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="attribution">
+      Challenge by
+      <a href="https://www.frontendmentor.io?ref=challenge" target="_blank"
+        >Frontend Mentor</a
+      >. Coded by <a href="#">Chinazaekpere Uchenna</a>.
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
